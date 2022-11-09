@@ -2,6 +2,6 @@ namespace Dondoko
 {
     public interface IReleasable
     {
-        void Release();
+        public void Release();
     }
 }
