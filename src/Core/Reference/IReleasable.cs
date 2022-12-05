@@ -1,4 +1,4 @@
-namespace Dondoko
+namespace Dondoko.Reference
 {
     public interface IReleasable
     {
