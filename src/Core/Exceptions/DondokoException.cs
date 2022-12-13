@@ -1,17 +1,16 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Dondoko
+namespace Dondoko;
+
+[Serializable]
+public class DondokoException : Exception
 {
-    [Serializable]
-    public class DondokoException : Exception
-    {
-        public DondokoException() : base(SR.Dondoko_FrameworkException) { }
+    public DondokoException() : base(SR.Dondoko_FrameworkException) { }
 
-        public DondokoException(string? message) : base(message) { }
+    public DondokoException(string? message) : base(message) { }
 
-        public DondokoException(string? message, Exception? innerException) : base(message, innerException) { }
+    public DondokoException(string? message, Exception? innerException) : base(message, innerException) { }
 
-        protected DondokoException(SerializationInfo info, StreamingContext context) : base(info, context) { }
-    }
+    protected DondokoException(SerializationInfo info, StreamingContext context) : base(info, context) { }
 }
