@@ -11,31 +11,9 @@ public static partial class Version
 
     public static string DondokoVersion => DondokoVersionString;
 
-    public static string GameVersion
-    {
-        get
-        {
-            if (s_versioner is null)
-            {
-                return string.Empty;
-            }
+    public static string GameVersion => s_versioner?.GameVersion ?? string.Empty;
 
-            return s_versioner.GameVersion;
-        }
-    }
-
-    public static int InternalGameVersion
-    {
-        get
-        {
-            if (s_versioner is null)
-            {
-                return DefaultInternalGameVersion;
-            }
-
-            return s_versioner.InternalGameVersion;
-        }
-    }
+    public static int InternalGameVersion => s_versioner?.InternalGameVersion ?? DefaultInternalGameVersion;
 
     public static void SetVersioner(IVersioner? versioner) => s_versioner = versioner;
 }
