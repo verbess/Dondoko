@@ -10,7 +10,11 @@ public class DondokoException : Exception
 
     public DondokoException(string? message) : base(message) { }
 
-    public DondokoException(string? message, Exception? innerException) : base(message, innerException) { }
+    public DondokoException(
+        string? message,
+        Exception? innerException) : base(message, innerException) { }
 
-    protected DondokoException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+    protected DondokoException(
+        SerializationInfo info,
+        StreamingContext context) : base(info, context) { }
 }
