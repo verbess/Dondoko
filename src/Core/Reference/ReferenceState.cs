@@ -4,7 +4,14 @@ namespace Dondoko.Reference;
 
 public struct ReferenceState
 {
-    public ReferenceState(Type type, int unusedReferenceCount, int usingReferenceCount, int acquiredReferenceCount, int releasedReferenceCount, int addedReferenceCount, int removedReferenceCount)
+    public ReferenceState(
+        Type type,
+        int unusedReferenceCount,
+        int usingReferenceCount,
+        int acquiredReferenceCount,
+        int releasedReferenceCount,
+        int addedReferenceCount,
+        int removedReferenceCount)
     {
         Type = type;
         UnusedReferenceCount = unusedReferenceCount;
