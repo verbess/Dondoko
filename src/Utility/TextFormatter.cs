@@ -8,7 +8,8 @@ public static partial class TextFormatter
 
     static TextFormatter() => s_formatter = null;
 
-    public static void SetFormatter(IFormatter? formatter) => s_formatter = formatter;
+    public static void SetFormatter(IFormatter? formatter)
+        => s_formatter = formatter;
 
     public static string Format(string format, object? arg0)
     {
@@ -21,14 +22,17 @@ public static partial class TextFormatter
     {
         ArgumentNullException.ThrowIfNull(format);
 
-        return s_formatter?.Format(format, arg0, arg1) ?? string.Format(format, arg0, arg1);
+        return s_formatter?.Format(format, arg0, arg1)
+            ?? string.Format(format, arg0, arg1);
     }
 
-    public static string Format(string format, object? arg0, object? arg1, object? arg2)
+    public static string Format(
+        string format, object? arg0, object? arg1, object? arg2)
     {
         ArgumentNullException.ThrowIfNull(format);
 
-        return s_formatter?.Format(format, arg0, arg1, arg2) ?? string.Format(format, arg0, arg1, arg2);
+        return s_formatter?.Format(format, arg0, arg1, arg2)
+            ?? string.Format(format, arg0, arg1, arg2);
     }
 
     public static string Format(string format, params object?[] args)
