@@ -136,7 +136,8 @@ public static partial class Log
             LogLevel.Fatal,
             TextFormatter.Format(format, arg0, arg1));
 
-    public static void Fatal(string format, object? arg0, object? arg1, object? arg2)
+    public static void Fatal(
+        string format, object? arg0, object? arg1, object? arg2)
         => s_logger?.Log(
             LogLevel.Fatal,
             TextFormatter.Format(format, arg0, arg1, arg2));
