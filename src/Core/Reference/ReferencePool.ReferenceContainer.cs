@@ -13,26 +13,26 @@ public static partial class ReferencePool
         {
             Type = type;
             _references = new Queue<IReference>();
-            UsingReferenceCount = 0;
-            AcquiredReferenceCount = 0;
-            ReleasedReferenceCount = 0;
-            AddedReferenceCount = 0;
-            RemovedReferenceCount = 0;
+            UsingCount = 0;
+            AcquiredCount = 0;
+            ReleasedCount = 0;
+            AddedCount = 0;
+            RemovedCount = 0;
         }
 
         public Type Type { get; init; }
 
-        public int UnusedReferenceCount => _references.Count;
+        public int UnusedCount => _references.Count;
 
-        public int UsingReferenceCount { get; private set; }
+        public int UsingCount { get; private set; }
 
-        public int AcquiredReferenceCount { get; private set; }
+        public int AcquiredCount { get; private set; }
 
-        public int ReleasedReferenceCount { get; private set; }
+        public int ReleasedCount { get; private set; }
 
-        public int AddedReferenceCount { get; private set; }
+        public int AddedCount { get; private set; }
 
-        public int RemovedReferenceCount { get; private set; }
+        public int RemovedCount { get; private set; }
 
         public T Acquire<T>() where T : class, IReference, new()
         {
@@ -42,8 +42,8 @@ public static partial class ReferencePool
                     SR.InvalidOperation_TypeMismatch);
             }
 
-            UsingReferenceCount++;
-            AcquiredReferenceCount++;
+            UsingCount++;
+            AcquiredCount++;
             lock (_references)
             {
                 if (_references.Count > 0)
@@ -52,15 +52,15 @@ public static partial class ReferencePool
                 }
             }
 
-            AddedReferenceCount++;
+            AddedCount++;
 
             return new T();
         }
 
         public IReference Acquire()
         {
-            UsingReferenceCount++;
-            AcquiredReferenceCount++;
+            UsingCount++;
+            AcquiredCount++;
             lock (_references)
             {
                 if (_references.Count > 0)
@@ -69,7 +69,7 @@ public static partial class ReferencePool
                 }
             }
 
-            AddedReferenceCount++;
+            AddedCount++;
 
             return Activator.CreateInstance(Type) as IReference
                 ?? throw new InvalidOperationException(
@@ -90,8 +90,8 @@ public static partial class ReferencePool
                 _references.Enqueue(reference);
             }
 
-            ReleasedReferenceCount++;
-            UsingReferenceCount--;
+            ReleasedCount++;
+            UsingCount--;
         }
 
         public void Add<T>(int count) where T : class, IReference, new()
@@ -104,7 +104,7 @@ public static partial class ReferencePool
 
             lock (_references)
             {
-                AddedReferenceCount += count;
+                AddedCount += count;
                 while (count > 0)
                 {
                     _references.Enqueue(new T());
@@ -117,7 +117,7 @@ public static partial class ReferencePool
         {
             lock (_references)
             {
-                AddedReferenceCount += count;
+                AddedCount += count;
                 while (count > 0)
                 {
                     IReference reference = Activator.CreateInstance(Type) as IReference ?? throw new InvalidOperationException(SR.InvalidOperation_InstanceCreationFailed);
@@ -132,7 +132,7 @@ public static partial class ReferencePool
             lock (_references)
             {
                 count = Math.Min(count, _references.Count);
-                RemovedReferenceCount += count;
+                RemovedCount += count;
                 while (count > 0)
                 {
                     _references.Dequeue();
@@ -145,7 +145,7 @@ public static partial class ReferencePool
         {
             lock (_references)
             {
-                RemovedReferenceCount += _references.Count;
+                RemovedCount += _references.Count;
                 _references.Clear();
             }
         }
