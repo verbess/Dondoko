@@ -6,33 +6,33 @@ public struct ReferenceState
 {
     public ReferenceState(
         Type type,
-        int unusedReferenceCount,
-        int usingReferenceCount,
-        int acquiredReferenceCount,
-        int releasedReferenceCount,
-        int addedReferenceCount,
-        int removedReferenceCount)
+        int unusedCount,
+        int usingCount,
+        int acquiredCount,
+        int releasedCount,
+        int addedCount,
+        int removedCount)
     {
         Type = type;
-        UnusedReferenceCount = unusedReferenceCount;
-        UsingReferenceCount = usingReferenceCount;
-        AcquiredReferenceCount = acquiredReferenceCount;
-        ReleasedReferenceCount = releasedReferenceCount;
-        AddedReferenceCount = addedReferenceCount;
-        RemovedReferenceCount = removedReferenceCount;
+        UnusedCount = unusedCount;
+        UsingCount = usingCount;
+        AcquiredCount = acquiredCount;
+        ReleasedCount = releasedCount;
+        AddedCount = addedCount;
+        RemovedCount = removedCount;
     }
 
     public Type Type { get; init; }
 
-    public int UnusedReferenceCount { get; init; }
+    public int UnusedCount { get; init; }
 
-    public int UsingReferenceCount { get; init; }
+    public int UsingCount { get; init; }
 
-    public int AcquiredReferenceCount { get; init; }
+    public int AcquiredCount { get; init; }
 
-    public int ReleasedReferenceCount { get; init; }
+    public int ReleasedCount { get; init; }
 
-    public int AddedReferenceCount { get; init; }
+    public int AddedCount { get; init; }
 
-    public int RemovedReferenceCount { get; init; }
+    public int RemovedCount { get; init; }
 }
